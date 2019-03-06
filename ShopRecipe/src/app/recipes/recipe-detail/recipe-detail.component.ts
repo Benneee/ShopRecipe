@@ -22,6 +22,7 @@ export class RecipeDetailComponent implements OnInit {
         this.id = params['id']
         this.recipeService.getRecipe(this.id);
       })
+      // There is an error that needs to fixed here
   }
   onAddToShoppingList() {
     this.recipeService.addIngredients(this.recipe.ingredients);
