@@ -4,8 +4,8 @@
       <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
         <div class="row">
           <div class="col-12" id="btngrp">
-            <button type="submit" class="btn btn-success"
-            [disabled]= "!recipeForm.valid">Save</button>
+            <!--There is a bug that crops up if I trigger the validators here-->
+            <button type="submit" class="btn btn-success">Save</button>
             <button type="button" class="btn btn-danger">Cancel</button>
           </div>
         </div>
@@ -80,7 +80,7 @@
               </div>
 
               <div class="col-2">
-                <button class="btn btn-danger">X</button>
+                <button type="button" class="btn btn-danger">X</button>
               </div>
             </div>
 

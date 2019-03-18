@@ -8,7 +8,7 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 export class RecipeService {
 
-  recipesChanged = new Subject<Recipe[]>()
+  recipesChanged = new Subject<Recipe[]>();
 
   notifyNext() {
     this.recipesChanged.next(this.recipes.slice());
