@@ -8,7 +8,7 @@ import { Observable } from "rxjs";
 @Injectable()
 
 export class DataStorageService {
-
+    
     constructor(
         private http: HttpClient,
         private recipeService: RecipeService
@@ -17,7 +17,11 @@ export class DataStorageService {
     recipesUrl: string = 'https://shoprecipe-9df12.firebaseio.com/recipes.json';
 
     storeRecipes() {
-        return this.http.put( this.recipesUrl, this.recipeService.getRecipes());
+        return this.http.put(this.recipesUrl, this.recipeService.getRecipes());
+    }
+
+    keepRecipes(recipe: Recipe[]) {
+        return this.http.post(this.recipesUrl, recipe)
     }
 
     fetchRecipes(): Observable<Recipe[]> {

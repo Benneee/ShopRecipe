@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSaveData() {
+  onOverwriteData() {
     this.dataStorageService.storeRecipes()
       .subscribe(
         (res: Response) => {
