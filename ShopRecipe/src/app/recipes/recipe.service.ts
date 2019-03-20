@@ -43,6 +43,11 @@ export class RecipeService {
 
   constructor(private shoppinglistService: ShoppingListService) {}
 
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes;
+    this.notifyNext();
+  }
+
   getRecipes() {
     return this.recipes.slice();
   }
