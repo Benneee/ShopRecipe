@@ -1,44 +1,49 @@
 <nav class="navbar navbar-expand-md navbar-default bg-light">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a routerLink="/" style="cursor: pointer;" class="navbar-brand">ShopRecipe</a>
+      <a routerLink="/" style="cursor: pointer;" class="navbar-brand"
+        >ShopRecipe</a
+      >
     </div>
 
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav">
-        <li 
-        [routerLinkActiveOptions]="{exact: true}"
-        routerLinkActive="active">
-          <a class="nav-item" 
-          class="active"
-            routerLink = '/recipes'>Recipes
-          </a>
+        <li
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="active"
+        >
+          <a class="nav-item" class="active" routerLink="/recipes">Recipes </a>
         </li>
 
-        <li 
-        [routerLinkActiveOptions]="{exact: true}"
-        routerLinkActive="active">
-          <a 
-           class="nav-item" 
-           routerLink = '/shopping-list'>Shopping List
-          </a>
+        <li
+          [routerLinkActiveOptions]="{ exact: true }"
+          routerLinkActive="active"
+        >
+          <a class="nav-item" routerLink="/shopping-list">Shopping List </a>
         </li>
-        
       </ul>
-      <ul class="nav navbar-nav ml-auto" >
+      <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item"><a routerLink="/signup">Register</a></li>
         <li class="nav-item dropdown">
-          <a 
-          style="cursor: pointer"
-          class="nav-link dropdown-toggle"
-          role="button" data-toggle="dropdown"
-          appDropdown #r="appDropdown">
+          <a
+            style="cursor: pointer"
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-toggle="dropdown"
+            appDropdown
+            #r="appDropdown"
+          >
             Manage <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu" [ngClass]="{'show':r.isOpen}">
-            <li><a style="cursor: pointer;"
-              (click)="onOverwriteData()">Save Data</a></li>
-            <li><a style="cursor: pointer;"
-              (click)="onFetchData()">Fetch Data</a></li>
+          <ul class="dropdown-menu" [ngClass]="{ show: r.isOpen }">
+            <li>
+              <a style="cursor: pointer;" (click)="onOverwriteData()"
+                >Save Data</a
+              >
+            </li>
+            <li>
+              <a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a>
+            </li>
           </ul>
         </li>
       </ul>
