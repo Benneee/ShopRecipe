@@ -23,8 +23,14 @@
         </li>
       </ul>
       <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item"><a routerLink="/signup">Register</a></li>
-        <li class="nav-item dropdown">
+        <ng-template [ngIf]= "!authService.isAuthenticated()">
+            <li class="nav-item"><a routerLink="/signin">Log in</a></li>
+            <li class="nav-item"><a routerLink="/signup">Register</a></li>
+        </ng-template>
+
+        <li><a style="cursor: pointer;" *ngIf="authService.isAuthenticated()" (click)="onLogout()">Log out</a></li>
+
+        <li class="nav-item dropdown" *ngIf="authService.isAuthenticated()">
           <a
             style="cursor: pointer"
             class="nav-link dropdown-toggle"
@@ -38,8 +44,8 @@
           <ul class="dropdown-menu" [ngClass]="{ show: r.isOpen }">
             <li>
               <a style="cursor: pointer;" (click)="onOverwriteData()"
-                >Save Data</a
-              >
+                >Save Data
+              </a>
             </li>
             <li>
               <a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a>
