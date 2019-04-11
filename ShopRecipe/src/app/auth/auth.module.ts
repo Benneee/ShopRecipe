@@ -11,3 +11,6 @@ import { SignupComponent } from "./signup/signup.component";
   providers: []
 })
 export class AuthModule {}
+
+// You should not export a module from a feature module so that another feature
+// module can use it.

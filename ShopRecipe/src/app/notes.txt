@@ -1,0 +1,39 @@
+Feature Modules
+
+These modules tend to make the app module leaner. It has a cosemtic effect in general as it tends 
+to keep all the files concerned with a particular feature in one place.
+
+A shared module is employed when a module is being used by two components belonging
+to different modules.
+
+
+Lazy Loading
+
+Opposite of Lazy loading is Eager loading.
+
+This is a great way to improve an angular application's performance. A particular feature modules
+or its components are not loaded when it is not needed, this explains lazy loading.
+
+For ShopRecipe, the Auth route will always be loaded, the recipe route will
+always be loaded since the login page redirects to the page when login is successful.
+The ShoppingList section is not a frequently visited page in the application.
+Also, because the recipe module is like the main part of the application, we can create a page
+that makes going to the recipe module optional, a homepage of the sort.
+
+On adding the homepage, users can choose which of the pages they want to visit 
+from the tab.
+
+Don't forget the change the routes in the app-routing module.
+
+All the modules listed in the app module are boostrapped when the app is loaded.
+
+Steps to Lazy Loasing For the ShopRecipe app
+1. Create the homepage - a new home component
+2. Remove the recipemodule from the 'imports' array in the app module.
+- After this, every component loaded from the recipemodule won't be loaded by
+the webpack anymore.
+3. Change the routing in the app-routing module to use the 'loadChildren'
+method, also update the recipes routing module to an empty string sice we are now loading dynamically, on doing this, the component will not be imported and the module will
+not be loaded dynamically
+4. To see if it is working, check the network tab and look out for a 'chunk' file
+or the name of the module.
