@@ -37,3 +37,56 @@ method, also update the recipes routing module to an empty string sice we are no
 not be loaded dynamically
 4. To see if it is working, check the network tab and look out for a 'chunk' file
 or the name of the module.
+
+
+About Services, Lazy-Loaded Modules and Shared Modules
+-- Never provide a service on a shared module especially if you plan to use the service in Lazy loaded modules.
+Instead, put the service in the providers array in the lazy-loaded module. Angular would provide
+a child injector for the service to fulfil its purpose
+
+The Core Module contains the header component, home component and all the services used in the app.
+The two components are loaded eagerly and the latter is used everywhere in the app.
+The services are moved to the providers array in the core module to keep the app module lean
+It's not for efficiency or anything related to performance, it's to follow best practices
+and to keep the app module lean, also since the core module is loaded eagerly, it would be great to have all the 
+services loaded at runtime of the app.
+
+AuthGuard
+If you use a service in only one module, it is best to only provide it in that module.
+Providing the service application-wide is not necessarily bad, it is just great practice to 
+have it where it is primarily needed. In the case of the AuthGuard, it is primarily used in the 
+Recipes-Routing Module, so it is moved to the providers array of the said module.
+
+** Guards are the only kinds of services that should ever be imported to the routing module.
+
+AOT Compilation.
+Ahead-of-time compilation simply has to do with Angular compiliing and parsing the HTML 
+templates into JavaScript code.
+There are two places/methods this compilation is done:
+1. Just-in-time-compilation
+(Development - Production - App Downloaded in Browser - Angular Parses & Compiles Templates to 
+JavaScript)
+
+2. Ahead-of-time compilation
+(Development - Angular Parses & Compiles Templates to JavaScript - Production - App Downloaded in Browser)
+
+Advantages Of AOT
+- Faster startup since the parsing and compilation doesn't happen in browser
+- Templates get checked during development
+- Smaller file size as unused features can be stripped out and the Compiler itself isn't shipped.
+
+`ng build --prod --aot` is the command to use aot.
+
+** Preloading Lazy Loaded
+So the lazy-loaded modules are currently loaded only when the Recipes page is 
+visited. This affects performance of the app. Angular, however, provides a way in which
+the lazy loaded modules can be pre-loaded.
+
+To enable Preloading:
+- Go to app-routing module
+- In the forRoot method
+-- Add an object with the key titled 'preloadingStrategy' and its value will
+be 'PreloadAllModules' which is imported from angular/router
+
+To see this in action, check the network tab on reloading the app and you'll 
+see that the module is pre-downloaded by the app before you get to the page.
