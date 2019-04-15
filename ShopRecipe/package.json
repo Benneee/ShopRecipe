@@ -7,10 +7,17 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod"
   },
   "private": true,
+  "engines": {
+    "node": "10.13.0",
+    "npm": "6.4.1"
+  },
   "dependencies": {
+    "@angular/cli": "^7.3.8",
+    "@angular/compiler-cli": "^7.0.4",
     "@angular/animations": "~7.0.0",
     "@angular/common": "~7.0.0",
     "@angular/compiler": "~7.0.0",
@@ -24,17 +31,19 @@
     "core-js": "^2.5.4",
     "firebase": "^5.9.1",
     "rxjs": "~6.3.3",
+    "typescript": "~3.1.6",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.12.2",
-    "@angular/cli": "~7.0.6",
-    "@angular/compiler-cli": "~7.0.0",
+    "@angular/cli": "^7.3.8",
+    "@angular/compiler-cli": "^7.0.4",
     "@angular/language-service": "~7.0.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.5.0",
+    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.0.0",
