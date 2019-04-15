@@ -90,3 +90,15 @@ be 'PreloadAllModules' which is imported from angular/router
 
 To see this in action, check the network tab on reloading the app and you'll 
 see that the module is pre-downloaded by the app before you get to the page.
+
+** Deploying the Angular App
+
+-- Build the app for Production (Consider AOT Compilation)
+
+-- Set the correct <base> element
+If your application is not loaded from the base element, you should consider setting the link
+correctly, this is required by the angular-router to work correctly.
+e.g yourdomainname.com/my-app if your app is loaded from a nested path like <base href="/my-app/">#
+
+-- Make sure your server always returns index.html (especially in case of 404 errors)
+
