@@ -1,0 +1,104 @@
+Feature Modules
+
+These modules tend to make the app module leaner. It has a cosemtic effect in general as it tends 
+to keep all the files concerned with a particular feature in one place.
+
+A shared module is employed when a module is being used by two components belonging
+to different modules.
+
+
+Lazy Loading
+
+Opposite of Lazy loading is Eager loading.
+
+This is a great way to improve an angular application's performance. A particular feature modules
+or its components are not loaded when it is not needed, this explains lazy loading.
+
+For ShopRecipe, the Auth route will always be loaded, the recipe route will
+always be loaded since the login page redirects to the page when login is successful.
+The ShoppingList section is not a frequently visited page in the application.
+Also, because the recipe module is like the main part of the application, we can create a page
+that makes going to the recipe module optional, a homepage of the sort.
+
+On adding the homepage, users can choose which of the pages they want to visit 
+from the tab.
+
+Don't forget the change the routes in the app-routing module.
+
+All the modules listed in the app module are boostrapped when the app is loaded.
+
+Steps to Lazy Loasing For the ShopRecipe app
+1. Create the homepage - a new home component
+2. Remove the recipemodule from the 'imports' array in the app module.
+- After this, every component loaded from the recipemodule won't be loaded by
+the webpack anymore.
+3. Change the routing in the app-routing module to use the 'loadChildren'
+method, also update the recipes routing module to an empty string sice we are now loading dynamically, on doing this, the component will not be imported and the module will
+not be loaded dynamically
+4. To see if it is working, check the network tab and look out for a 'chunk' file
+or the name of the module.
+
+
+About Services, Lazy-Loaded Modules and Shared Modules
+-- Never provide a service on a shared module especially if you plan to use the service in Lazy loaded modules.
+Instead, put the service in the providers array in the lazy-loaded module. Angular would provide
+a child injector for the service to fulfil its purpose
+
+The Core Module contains the header component, home component and all the services used in the app.
+The two components are loaded eagerly and the latter is used everywhere in the app.
+The services are moved to the providers array in the core module to keep the app module lean
+It's not for efficiency or anything related to performance, it's to follow best practices
+and to keep the app module lean, also since the core module is loaded eagerly, it would be great to have all the 
+services loaded at runtime of the app.
+
+AuthGuard
+If you use a service in only one module, it is best to only provide it in that module.
+Providing the service application-wide is not necessarily bad, it is just great practice to 
+have it where it is primarily needed. In the case of the AuthGuard, it is primarily used in the 
+Recipes-Routing Module, so it is moved to the providers array of the said module.
+
+** Guards are the only kinds of services that should ever be imported to the routing module.
+
+AOT Compilation.
+Ahead-of-time compilation simply has to do with Angular compiliing and parsing the HTML 
+templates into JavaScript code.
+There are two places/methods this compilation is done:
+1. Just-in-time-compilation
+(Development - Production - App Downloaded in Browser - Angular Parses & Compiles Templates to 
+JavaScript)
+
+2. Ahead-of-time compilation
+(Development - Angular Parses & Compiles Templates to JavaScript - Production - App Downloaded in Browser)
+
+Advantages Of AOT
+- Faster startup since the parsing and compilation doesn't happen in browser
+- Templates get checked during development
+- Smaller file size as unused features can be stripped out and the Compiler itself isn't shipped.
+
+`ng build --prod --aot` is the command to use aot.
+
+** Preloading Lazy Loaded
+So the lazy-loaded modules are currently loaded only when the Recipes page is 
+visited. This affects performance of the app. Angular, however, provides a way in which
+the lazy loaded modules can be pre-loaded.
+
+To enable Preloading:
+- Go to app-routing module
+- In the forRoot method
+-- Add an object with the key titled 'preloadingStrategy' and its value will
+be 'PreloadAllModules' which is imported from angular/router
+
+To see this in action, check the network tab on reloading the app and you'll 
+see that the module is pre-downloaded by the app before you get to the page.
+
+** Deploying the Angular App
+
+-- Build the app for Production (Consider AOT Compilation)
+
+-- Set the correct <base> element
+If your application is not loaded from the base element, you should consider setting the link
+correctly, this is required by the angular-router to work correctly.
+e.g yourdomainname.com/my-app if your app is loaded from a nested path like <base href="/my-app/">#
+
+-- Make sure your server always returns index.html (especially in case of 404 errors)
+
