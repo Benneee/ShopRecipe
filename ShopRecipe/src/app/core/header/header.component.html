@@ -1,51 +1,41 @@
 <nav class="navbar navbar-expand-md navbar-default bg-light">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a routerLink="/" style="cursor: pointer;" class="navbar-brand"
-        >ShopRecipe</a
+    <div id="header" class="navbar-header">
+      <a routerLink="/" style="cursor: pointer;" class="navbar-brand">
+        <header><h2>ShopRecipe</h2></header></a
       >
     </div>
 
-    <div class="collapse navbar-collapse">
+    <div id="nav" class="collapse navbar-collapse">
       <ul class="navbar-nav">
-        <li
-          [routerLinkActiveOptions]="{ exact: true }"
-          routerLinkActive="active"
-        >
-          <a class="nav-item" class="active" routerLink="/recipes">Recipes </a>
+        <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+          <a class="nav-item" routerLink="/recipes"><h4>Recipes</h4></a>
         </li>
 
-        <li
-          [routerLinkActiveOptions]="{ exact: true }"
-          routerLinkActive="active"
-        >
-          <a class="nav-item" routerLink="/shopping-list">Shopping List </a>
+        <li [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">
+          <a class="nav-item" routerLink="/shopping-list"><h4>Shopping List</h4></a>
         </li>
       </ul>
       <ul class="nav navbar-nav ml-auto">
-        <ng-template [ngIf]= "!authService.isAuthenticated()">
-            <li class="nav-item"><a routerLink="/signin">Log in</a></li>
-            <li class="nav-item"><a routerLink="/signup">Register</a></li>
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+          <li class="nav-item">
+            <a routerLink="/signin"><h4>Log in</h4></a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/signup"><h4>Register</h4></a>
+          </li>
         </ng-template>
 
         <li><a style="cursor: pointer;" *ngIf="authService.isAuthenticated()" (click)="onLogout()">Log out</a></li>
 
         <li class="nav-item dropdown" *ngIf="authService.isAuthenticated()">
-          <a
-            style="cursor: pointer"
-            class="nav-link dropdown-toggle"
-            role="button"
-            data-toggle="dropdown"
-            appDropdown
-            #r="appDropdown"
-          >
-            Manage <span class="caret"></span>
+          <a style="cursor: pointer" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" appDropdown #r="appDropdown">
+            <h4>Manage</h4>
+            <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" [ngClass]="{ show: r.isOpen }">
             <li>
-              <a style="cursor: pointer;" (click)="onOverwriteData()"
-                >Save Data
-              </a>
+              <a style="cursor: pointer;" (click)="onOverwriteData()">Save Data </a>
             </li>
             <li>
               <a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a>
