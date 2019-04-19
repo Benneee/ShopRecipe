@@ -4,6 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 A simple application to manage your shopping list and also create fun recipes with all the desired ingredients.
 
+View the app here: https://shop-recipe.herokuapp.com
+
 Credit to Maximilian Schwarzmuller for such a wonderful Angular course,
 I'm super grateful!
 
