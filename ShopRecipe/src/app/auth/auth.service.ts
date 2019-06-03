@@ -1,6 +1,6 @@
-import * as firebase from "firebase";
-import { Injectable } from "@angular/core";
-import { Router } from "@angular/router";
+import * as firebase from 'firebase';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -12,8 +12,8 @@ export class AuthService {
   signupUser(email: string, password: string) {
     firebase
       .auth()
-      .createUserAndRetrieveDataWithEmailAndPassword(email, password)
-      .catch(error => console.log("err in signup", error));
+      .createUserWithEmailAndPassword(email, password)
+      .catch(error => console.log('err in signup', error));
   }
   // This method signs in the user
   signinUser(email: string, password: string) {
@@ -21,14 +21,14 @@ export class AuthService {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(res => {
-        this.router.navigate(["/"]);
+        this.router.navigate(['/']);
         firebase
           .auth()
           .currentUser.getIdToken()
           .then((token: string) => (this.token = token));
-        console.log("sign in successful", res);
+        console.log('sign in successful', res);
       })
-      .catch(err => console.log("err in signing in", err));
+      .catch(err => console.log('err in signing in', err));
   }
 
   // This method logs out the user
@@ -36,7 +36,7 @@ export class AuthService {
   // We also navigate to the sign in page to lock out an unauthenticated user
   logoutUser() {
     firebase.auth().signOut();
-    this.router.navigate(["signin"]);
+    this.router.navigate(['signin']);
     this.token = null;
   }
 

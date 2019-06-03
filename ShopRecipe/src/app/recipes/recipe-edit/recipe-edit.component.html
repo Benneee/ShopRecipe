@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-12" id="btngrp">
             <!--There is a bug that crops up if I trigger the validators here-->
-            <button type="submit" class="btn btn-success">Save</button>
+            <button type="submit" (click)="sendEvent()" class="btn btn-success">Save</button>
             <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
           </div>
         </div>
@@ -13,13 +13,8 @@
           <div class="col-12">
             <div class="form-group">
               <label for="name">Name</label>
-              <input
-                placeholder="Please enter the name of your ingredient"
-                type="text"
-                id="name"
-                formControlName="name"
-                class="form-control"
-              />
+              <input placeholder="Please enter the name of your ingredient" type="text" id="name"
+                formControlName="name" class="form-control" />
             </div>
           </div>
         </div>
@@ -28,14 +23,8 @@
           <div class="col-12">
             <div class="form-group">
               <label for="imagePath">Image URL</label>
-              <input
-                type="text"
-                placeholder="Please enter the URL for your image"
-                id="imagePath"
-                formControlName="imagePath"
-                class="form-control"
-                #imagePath
-              />
+              <input type="text" placeholder="Please enter the URL for your image" id="imagePath"
+                formControlName="imagePath" class="form-control" #imagePath />
             </div>
           </div>
         </div>
@@ -50,26 +39,18 @@
           <div class="col-12">
             <div class="form-group">
               <label for="name">Description</label>
-              <textarea
-                type="text"
-                id="description"
-                formControlName="description"
-                placeholder="Please enter a description for your ingredient"
-                class="form-control"
-                rows="6"
-              ></textarea>
+              <textarea type="text" id="description" formControlName="description"
+                placeholder="Please enter a description for your ingredient" class="form-control"
+                rows="6"></textarea>
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="col-12" formArrayName="ingredients">
-            <div
-              class="row"
+            <div class="row"
               *ngFor="let ingredientCtrl of recipeForm.get('ingredients')['controls']; let i = index"
-              [formGroupName]="i"
-              style="margin-top: 10px;"
-            >
+              [formGroupName]="i" style="margin-top: 10px;">
               <div class="col-8">
                 <input type="text" class="form-control" formControlName="name" />
               </div>
@@ -79,7 +60,8 @@
               </div>
 
               <div class="col-2">
-                <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
+                <button type="button" class="btn btn-danger"
+                  (click)="onDeleteIngredient(i)">X</button>
               </div>
             </div>
 
@@ -87,7 +69,8 @@
 
             <div class="row">
               <div class="col-12">
-                <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add Ingredient</button>
+                <button type="button" class="btn btn-success" (click)="onAddIngredient()">Add
+                  Ingredient</button>
               </div>
             </div>
           </div>

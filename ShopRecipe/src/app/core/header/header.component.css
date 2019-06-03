@@ -1,7 +1,77 @@
-.nav-item {
-    margin: 0px 5px 0px 5px
+.nav-item h4 {
+  margin: 0px 5px 0px 5px;
 }
 
 a.nav-item {
+  text-decoration: none;
+}
+
+li:active {
+  color: red !important;
+}
+
+@media (min-width: 200px) and (max-width: 480px) {
+  div#header a header {
+    margin-top: 0;
+    padding: 0.25em;
+    text-align: center;
+  }
+
+  div#nav {
+    font-size: 1.3em;
+    margin-right: 2.9em;
+    margin-left: 2.9em;
+    padding: 0;
+    text-align: center;
     text-decoration: none;
+  }
+
+  div#nav ul {
+    margin: 0;
+    padding: 0.1em;
+  }
+
+  div#nav li {
+    background-color: rgba(148, 187, 255, 1);
+    border-radius: 1em;
+    margin-top: 1em;
+    padding: 0.6em;
+    list-style: none;
+  }
+
+  div#nav a {
+    padding: 1em;
+    text-decoration: none;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  div#header a header {
+    margin-top: 0;
+    padding: 0.6em;
+    text-align: center;
+  }
+
+  div#nav {
+    font-size: 1.4em;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  div#nav ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  div#nav li {
+    display: inline;
+  }
+
+  div#nav a {
+    display: inline-block;
+    padding: 1em;
+    text-decoration: none;
+  }
 }
